@@ -16,16 +16,14 @@ function getRandomNumber(numMin, numMax) {
     const randomNumber = Math.floor( Math.random()* (numMax - numMin +1) + numMin);
     return randomNumber;
 }
-
    
 
 // richiamo il bottone dal documento allo script 
 const playButton = document.getElementById("button");
 
 
-//inserisco l'evento al click del bottone play
 
-playButton.addEventListener("click", function(){
+playButton.addEventListener("click", function(){      //inserisco l'evento al click del bottone play
 
     const containerGrid = document.querySelector("div.grid");
     containerGrid.classList.add("mb-5");
@@ -42,23 +40,23 @@ playButton.addEventListener("click", function(){
     console.log(bombNumbers);
 
     // creazione delle celle da 1 a 100 
-
     for(let i=1; i<=100; i++){
 
         const gridSquare = document.createElement("div");    
         gridSquare.classList.add("square"); 
 
         gridSquare.addEventListener("click", function(){
-            if(bombNumbers[i] === gridSquare[i]){
+            gridSquare.classList.toggle("clicked");
+            
+            if(bombNumbers.includes(i)){
                 alert ("GAME OVER!! YOU LOOSE!!")
-            }else{
-                gridSquare.classList.toggle("clicked");
-            }           
+            }
         })
+
         containerGrid.append(gridSquare);
         gridSquare.append(i); 
-
     }
+
 }, {once:true})   // serve per far eseguire l'evento solo una volta... è vero solo una volta, quindi non si genereranno altre griglie
 
 
