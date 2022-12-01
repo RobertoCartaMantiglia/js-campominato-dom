@@ -1,0 +1,19 @@
+header{
+    background-color: coral;
+}
+div.grid{
+    width: 700px;
+    height: 700px;
+}
+div.square{
+    height: calc(100% / 10);
+    width: calc(100% / 10);
+    border: 1px solid purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+div.square.clicked{
+    background-color: aqua;
+}
