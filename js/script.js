@@ -8,25 +8,8 @@
 
 
 
-// richiamo il bottone dal documento allo script 
-const playButton = document.getElementById("button");
 
 
-// FUNZIONE PER GENERARE  UN QUADRATO 
-function getGridSquare (number){
-    const gridSquare = document.createElement("div");
-    
-    gridSquare.classList.add("square");    
-
-    gridSquare.addEventListener("click", function(){
-        if(bombNumbers[i] === number){
-            alert("GAME OVER!! YOU LOSE!!")
-        }else{
-            gridSquare.classList.toggle("clicked");
-        }
-    })
-    return gridSquare;
-}
 
 //funzione per generare numeri casuali 
 function getRandomNumber(numMin, numMax) {
@@ -34,18 +17,10 @@ function getRandomNumber(numMin, numMax) {
     return randomNumber;
 }
 
+   
 
-
-
-// function bomb (number){
-//     let gameOver = false;
-
-//     if(number === bombIndex){
-//         gameOver = true;
-//         alert("GAME OVER");
-//     }
-//     return gameOver;
-// }
+// richiamo il bottone dal documento allo script 
+const playButton = document.getElementById("button");
 
 
 //inserisco l'evento al click del bottone play
@@ -59,7 +34,6 @@ playButton.addEventListener("click", function(){
     let bombNumbers =[]; 
 
     while(bombNumbers.length < 16){
-
         const bombIndex = getRandomNumber (0, 100);
         if(!bombNumbers.includes(bombIndex)){
             bombNumbers.push(bombIndex);
@@ -70,9 +44,20 @@ playButton.addEventListener("click", function(){
     // creazione delle celle da 1 a 100 
 
     for(let i=1; i<=100; i++){
-        const gridSquare = getGridSquare();
+
+        const gridSquare = document.createElement("div");    
+        gridSquare.classList.add("square"); 
+
+        gridSquare.addEventListener("click", function(){
+            if(bombNumbers[i] === gridSquare[i]){
+                alert ("GAME OVER!! YOU LOOSE!!")
+            }else{
+                gridSquare.classList.toggle("clicked");
+            }           
+        })
         containerGrid.append(gridSquare);
-        gridSquare.append(i);     
+        gridSquare.append(i); 
+
     }
 }, {once:true})   // serve per far eseguire l'evento solo una volta... è vero solo una volta, quindi non si genereranno altre griglie
 
