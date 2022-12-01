@@ -24,11 +24,28 @@ function getGridSquare (number){
     })
     return gridSquare;
 }
+
 //funzione per generare numeri casuali 
 function getRandomNumber(numMin, numMax) {
     const randomNumber = Math.floor( Math.random()* (numMax - numMin +1) + numMin);
     return randomNumber;
 }
+
+
+// BOMBA! 
+let bombNumbers =[]; 
+
+while(bombNumbers.length < 16){
+    const bombIndex = getRandomNumber (0, 100);
+
+    if(!bombNumbers.includes(bombIndex)){
+        bombNumbers.push(bombIndex);
+    }
+  
+}
+console.log(bombNumbers);
+
+
 
 
 //inserisco l'evento al click del bottone play
