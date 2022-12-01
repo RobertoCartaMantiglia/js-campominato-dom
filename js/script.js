@@ -40,12 +40,19 @@ while(bombNumbers.length < 16){
 
     if(!bombNumbers.includes(bombIndex)){
         bombNumbers.push(bombIndex);
-    }
-  
+    }  
 }
 console.log(bombNumbers);
 
+function bomb (number){
+    let gameOver = false;
 
+    if(number === bombIndex){
+        gameOver = true;
+        alert("GAME OVER");
+    }
+    return gameOver;
+}
 
 
 //inserisco l'evento al click del bottone play
