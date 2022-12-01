@@ -19,8 +19,11 @@ function getGridSquare (number){
     gridSquare.classList.add("square");    
 
     gridSquare.addEventListener("click", function(){
-        gridSquare.classList.toggle("clicked");
-        console.log(number);
+        if(bombNumbers[i] === number){
+            alert("GAME OVER!! YOU LOSE!!")
+        }else{
+            gridSquare.classList.toggle("clicked");
+        }
     })
     return gridSquare;
 }
@@ -32,41 +35,46 @@ function getRandomNumber(numMin, numMax) {
 }
 
 
-// BOMBA! 
-let bombNumbers =[]; 
 
-while(bombNumbers.length < 16){
-    const bombIndex = getRandomNumber (0, 100);
 
-    if(!bombNumbers.includes(bombIndex)){
-        bombNumbers.push(bombIndex);
-    }  
-}
-console.log(bombNumbers);
+// function bomb (number){
+//     let gameOver = false;
 
-function bomb (number){
-    let gameOver = false;
-
-    if(number === bombIndex){
-        gameOver = true;
-        alert("GAME OVER");
-    }
-    return gameOver;
-}
+//     if(number === bombIndex){
+//         gameOver = true;
+//         alert("GAME OVER");
+//     }
+//     return gameOver;
+// }
 
 
 //inserisco l'evento al click del bottone play
 
-playButton.addEventListener("click", function(){ 
+playButton.addEventListener("click", function(){
+
     const containerGrid = document.querySelector("div.grid");
-    containerGrid.classList.add("mb-5");   
+    containerGrid.classList.add("mb-5");
+    
+    // BOMBA! 
+    let bombNumbers =[]; 
+
+    while(bombNumbers.length < 16){
+
+        const bombIndex = getRandomNumber (0, 100);
+        if(!bombNumbers.includes(bombIndex)){
+            bombNumbers.push(bombIndex);
+        }  
+    }
+    console.log(bombNumbers);
+
+    // creazione delle celle da 1 a 100 
 
     for(let i=1; i<=100; i++){
         const gridSquare = getGridSquare();
         containerGrid.append(gridSquare);
         gridSquare.append(i);     
     }
-}, {once:true})   //{once:true} serve per far eseguire l'evento solo una volta... è vero solo una volta, quindi non si genereranno altre griglie
+}, {once:true})   // serve per far eseguire l'evento solo una volta... è vero solo una volta, quindi non si genereranno altre griglie
 
 
 
