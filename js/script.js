@@ -11,8 +11,8 @@
 // richiamo il bottone dal documento allo script 
 const playButton = document.getElementById("button");
 
-//inserisco l'evento al click
 
+// FUNZIONE PER GENERARE  UN QUADRATO 
 function getGridSquare (number){
     const gridSquare = document.createElement("div");
     
@@ -24,6 +24,14 @@ function getGridSquare (number){
     })
     return gridSquare;
 }
+//funzione per generare numeri casuali 
+function getRandomNumber(numMin, numMax) {
+    const randomNumber = Math.floor( Math.random()* (numMax - numMin +1) + numMin);
+    return randomNumber;
+}
+
+
+//inserisco l'evento al click del bottone play
 
 playButton.addEventListener("click", function(){ 
     const containerGrid = document.querySelector("div.grid");
